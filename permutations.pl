@@ -1,19 +1,35 @@
 #! /usr/bin/perl -W
 use strict;
 use warnings;
+##########################################################################
+# The purpose of this script it to generate all permutations of a string #
+##########################################################################
 
-# The purpose of this script it to generate all permutations of a string
+# 1) create a string to test with
+my $string = "abcdfg";
 
-# create a string to test with
-my $string = "abcd";
-
-# call our function
+# 2)  call our function
 &getPerms($string);
 
+
+###################################
+# This is where the magic happens #
+###################################
+
 sub getPerms($) {
-  #first we'll get the last character from the string
+  # get the last character from the string
   my $last = substr($_[0], -1);
-  print $last."\n";
+
+  # determine the length of the string
+  if ( length($_[0]) > 1 ) {
+    &getPerms(substr($_[0], 0, -1));
+  }
+  else {
+    print $_[0];
+  }
+
+#  print length($_[0])."\n";
+#  print $last."\n"; # debugging line
 }
 
 
